@@ -8,6 +8,11 @@ export interface Persona {
   sexo: string;
 }
 
+export interface Salario {
+  id: number;
+  salario: number;
+}
+
 export interface Alumno {
   id: number;
   Nombre: string;

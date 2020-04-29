@@ -166,16 +166,44 @@ let getSalario = (empleado: Persona, callback: Function) => {
   }
 };
 
-getEmpleado(3, (err: null | string, empleado: Persona) => {
-  if (err) {
-    return console.error(err);
-  }
-  getSalario(empleado, (err: any, resp: any) => {
-    if (err) {
-      console.log(err);
-      return;
+// getEmpleado(3, (err: null | string, empleado: Persona) => {
+//   if (err) {
+//     return console.error(err);
+//   }
+//   getSalario(empleado, (err: any, resp: any) => {
+//     if (err) {
+//       console.log(err);
+//       return;
+//     }
+//     // debugger;
+//     console.info(`El salario de ${resp.nombre} es de ${resp.salario}`);
+//   });
+// });
+
+/***************************Callbacks asincronos*********************************
+
+************************************************************/
+function functionsegundaFuncion() {
+  console.log(`Se ejecuta segunda funcion`);
+}
+
+function getEmpleadoAsincrono(id: number, callback: Function) {
+  setTimeout(() => {
+    const Empleado = Personas.find((persona) => persona.id == id);
+
+    if (!Empleado) {
+      callback(`No existe empleado con tal id`);
+    } else {
+      callback(null, Empleado);
     }
-// debugger;
-    console.info(`El salario de ${resp.nombre} es de ${resp.salario}`);
-  });
+  }, 2000);
+}
+
+getEmpleadoAsincrono(6, (error: string | null, empleado: Persona) => {
+  if (error) {
+   return console.log(error);
+  }
+  console.log(empleado);
 });
+
+segundaFuncion();
